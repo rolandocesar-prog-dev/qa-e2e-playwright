@@ -1,0 +1,32 @@
+{
+  "name": "qa-e2e-playwright",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Suite de pruebas end-to-end con Playwright y TypeScript sobre Sauce Demo, con Page Object Model y CI.",
+  "author": "Rolando César Vásquez Tavera",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "report": "playwright show-report",
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.6",
+    "eslint": "^10.14.0",
+    "eslint-plugin-playwright": "^2.12.1",
+    "prettier": "^3.9.10",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.1"
+  }
+}

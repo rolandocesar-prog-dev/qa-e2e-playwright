@@ -1,0 +1,48 @@
+name: E2E
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Todos los días a las 11:17 UTC, para detectar cambios en el sitio bajo prueba.
+    - cron: '17 11 * * *'
+  workflow_dispatch:
+
+jobs:
+  e2e:
+    name: Playwright
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint, formato y tipos
+        run: |
+          npm run lint
+          npm run format:check
+          npm run typecheck
+
+      - name: Navegadores de Playwright
+        run: npx playwright install --with-deps
+
+      - name: Pruebas E2E
+        run: npm test
+
+      - name: Reporte HTML
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 14
