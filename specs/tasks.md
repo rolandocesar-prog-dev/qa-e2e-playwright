@@ -22,7 +22,7 @@ Marca `[x]` al terminar y haz un commit por tarea. Actualiza el estado del caso 
 
 - [x] INV-02 a INV-04, CART-03, CHK-04.
 - [ ] SPEC-01 y SPEC-02, con sus defectos documentados en `docs/defectos/`.
-- [ ] Plantilla de reporte de defectos.
+- [x] Plantilla de reporte de defectos.
 
 ## M3 · Calidad no funcional
 
