@@ -1,0 +1,77 @@
+name: Estabilidad
+
+# Mide la tasa de pruebas inestables (requirements.md §5): la suite completa N veces, sin
+# reintentos, en paralelo y dentro del mismo contenedor que el CI. Se ejecuta a mano.
+on:
+  workflow_dispatch:
+    inputs:
+      runs:
+        description: Cantidad de ejecuciones de la suite
+        default: '30'
+        required: true
+
+jobs:
+  plan:
+    name: Plan
+    runs-on: ubuntu-latest
+    outputs:
+      runs: ${{ steps.matrix.outputs.runs }}
+    steps:
+      - id: matrix
+        env:
+          RUNS: ${{ inputs.runs }}
+        run: echo "runs=$(seq -s, 1 "$RUNS" | sed 's/^/[/; s/$/]/')" >> "$GITHUB_OUTPUT"
+
+  suite:
+    name: Ejecución ${{ matrix.run }}
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+      options: --user 1001
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        run: ${{ fromJSON(needs.plan.outputs.runs) }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install
+        run: npm ci
+
+      - name: Pruebas E2E (sin reintentos)
+        # El resultado lo evalúa el trabajo «Resumen»; aquí solo se guarda.
+        continue-on-error: true
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: results.json
+        run: npx playwright test --retries=0 --reporter=json
+
+      - name: Guardar el resultado
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: results-${{ matrix.run }}
+          path: results.json
+          retention-days: 14
+
+  summary:
+    name: Resumen
+    needs: suite
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: results-*
+          path: results
+
+      - name: Tasa de pruebas inestables
+        run: node scripts/flaky-report.mjs results | tee -a "$GITHUB_STEP_SUMMARY"

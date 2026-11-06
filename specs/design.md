@@ -87,6 +87,13 @@ tests/
 - `baseURL` configurable con la variable `BASE_URL`.
 - En CI: 2 reintentos, `forbidOnly`, reporte `github` + HTML.
 - Evidencias: _trace_ en el primer reintento, captura y video solo cuando falla.
+- **Estabilidad** (workflow manual `Estabilidad`): ejecuta la suite completa N veces (30 por
+  defecto) en paralelo, **sin reintentos** y en el mismo contenedor que el CI, y guarda un reporte
+  JSON por ejecución. Un trabajo final (`scripts/flaky-report.mjs`) junta los resultados por
+  prueba (caso × navegador): **inestable** es la que pasa en unas ejecuciones y falla en otras;
+  aparte se cuentan las que fallan siempre. Falla si la tasa de inestables llega al 1 % o si hay
+  alguna rota, y publica la tabla en el resumen de la ejecución. Las fallas esperadas
+  (`test.fail()`) cuentan como resultado correcto.
 
 ## 8. Herramientas complementarias
 
