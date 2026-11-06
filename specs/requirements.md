@@ -1,4 +1,4 @@
-# Plan de pruebas — Sauce Demo
+undefinedAutomatizado |undefinedAutomatizado |undefinedAutomatizado |undefinedAutomatizado |# Plan de pruebas — Sauce Demo
 
 > Spec Driven Development aplicado a QA: este documento define **qué** se prueba y con qué
 > criterios. El **cómo** está en [`design.md`](./design.md) y el plan en [`tasks.md`](./tasks.md).
@@ -35,24 +35,24 @@ Prioridad: **A** = bloqueante para la compra, **M** = importante, **B** = deseab
 | LOGIN-02 | Usuario bloqueado ve un mensaje de error                 | A         | Automatizado |
 | LOGIN-03 | Contraseña incorrecta no permite el acceso               | A         | Automatizado |
 | LOGIN-04 | Campos vacíos indican que el usuario es obligatorio      | M         | Automatizado |
-| LOGIN-05 | Acceder a `/inventory.html` sin sesión redirige al login | A         | Pendiente    |
+| LOGIN-05 | Acceder a `/inventory.html` sin sesión redirige al login | A         | Automatizado |
 
 ### Catálogo (INV)
 
-| ID     | Caso                                                | Prioridad | Estado    |
-| ------ | --------------------------------------------------- | --------- | --------- |
-| INV-01 | Se muestran 6 productos con nombre, precio e imagen | A         | Pendiente |
-| INV-02 | Ordenar por precio ascendente y descendente         | M         | Pendiente |
-| INV-03 | Ordenar por nombre A-Z y Z-A                        | M         | Pendiente |
-| INV-04 | El detalle de un producto coincide con su tarjeta   | M         | Pendiente |
+| ID     | Caso                                                | Prioridad | Estado       |
+| ------ | --------------------------------------------------- | --------- | ------------ |
+| INV-01 | Se muestran 6 productos con nombre, precio e imagen | A         | Automatizado |
+| INV-02 | Ordenar por precio ascendente y descendente         | M         | Pendiente    |
+| INV-03 | Ordenar por nombre A-Z y Z-A                        | M         | Pendiente    |
+| INV-04 | El detalle de un producto coincide con su tarjeta   | M         | Pendiente    |
 
 ### Carrito (CART)
 
-| ID      | Caso                                                    | Prioridad | Estado    |
-| ------- | ------------------------------------------------------- | --------- | --------- |
-| CART-01 | Agregar un producto actualiza el contador del carrito   | A         | Pendiente |
-| CART-02 | Quitar un producto desde el catálogo y desde el carrito | A         | Pendiente |
-| CART-03 | El carrito se conserva al navegar entre páginas         | M         | Pendiente |
+| ID      | Caso                                                    | Prioridad | Estado       |
+| ------- | ------------------------------------------------------- | --------- | ------------ |
+| CART-01 | Agregar un producto actualiza el contador del carrito   | A         | Automatizado |
+| CART-02 | Quitar un producto desde el catálogo y desde el carrito | A         | Automatizado |
+| CART-03 | El carrito se conserva al navegar entre páginas         | M         | Pendiente    |
 
 ### Compra (CHK)
 

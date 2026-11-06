@@ -38,4 +38,15 @@ test.describe('Inicio de sesión', () => {
 
     await expect(loginPage.error).toContainText('Username is required');
   });
+
+  test('LOGIN-05 · entrar al catálogo sin sesión redirige al inicio de sesión', async ({
+    page,
+  }) => {
+    await new InventoryPage(page).goto();
+
+    await expect(page).toHaveURL(/saucedemo\.com\/$/);
+    await expect(loginPage.error).toContainText(
+      "You can only access '/inventory.html' when you are logged in",
+    );
+  });
 });
