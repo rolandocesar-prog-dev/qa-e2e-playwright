@@ -40,6 +40,11 @@ tests/
 - El sitio es una SPA: la URL cambia antes de que se dibuje la página nueva. Por eso las pruebas
   esperan con aserciones que reintentan (`toHaveText`, `toHaveURL`…), nunca con lecturas
   inmediatas.
+- El formulario del comprador se vuelve a dibujar justo después de aparecer y puede borrar lo
+  escrito en ese instante. Pasa bajo carga (se vio en WebKit, con 6 procesos en paralelo: «First
+  Name» quedaba vacío). `submitBuyer` reintenta el llenado con `toPass` hasta que los tres campos
+  tienen su valor (`toHaveValue`), sin esperas fijas. Con eso, CHK-01 a CHK-03 pasaron 75 de 75
+  veces en WebKit.
 
 ## 4. Montos de la compra (CHK-03)
 

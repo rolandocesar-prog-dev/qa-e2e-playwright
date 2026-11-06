@@ -16,7 +16,7 @@ Marca `[x]` al terminar y haz un commit por tarea. Actualiza el estado del caso 
 
 - [x] Fixture `loggedInPage` con `storageState`.
 - [x] LOGIN-05, INV-01, CART-01, CART-02.
-- [ ] Page Objects de carrito y compra; CHK-01 a CHK-03.
+- [x] Page Objects de carrito y compra; CHK-01 a CHK-03.
 
 ## M2 · Cobertura funcional (prioridad M)
 

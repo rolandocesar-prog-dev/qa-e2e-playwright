@@ -56,12 +56,12 @@ Prioridad: **A** = bloqueante para la compra, **M** = importante, **B** = deseab
 
 ### Compra (CHK)
 
-| ID     | Caso                                                        | Prioridad | Estado    |
-| ------ | ----------------------------------------------------------- | --------- | --------- |
-| CHK-01 | Compra completa de punta a punta                            | A         | Pendiente |
-| CHK-02 | Datos obligatorios del comprador (nombre, apellido, código) | A         | Pendiente |
-| CHK-03 | Subtotal, impuesto y total calculados correctamente         | A         | Pendiente |
-| CHK-04 | Cancelar la compra vuelve al carrito sin perder productos   | M         | Pendiente |
+| ID     | Caso                                                        | Prioridad | Estado       |
+| ------ | ----------------------------------------------------------- | --------- | ------------ |
+| CHK-01 | Compra completa de punta a punta                            | A         | Automatizado |
+| CHK-02 | Datos obligatorios del comprador (nombre, apellido, código) | A         | Automatizado |
+| CHK-03 | Subtotal, impuesto y total calculados correctamente         | A         | Automatizado |
+| CHK-04 | Cancelar la compra vuelve al carrito sin perder productos   | M         | Pendiente    |
 
 ### Usuarios especiales y calidad (SPEC, A11Y, PERF)
 
