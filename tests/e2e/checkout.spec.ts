@@ -6,6 +6,7 @@ import { CheckoutCompletePage } from '../pages/checkout-complete.page.js';
 import { CheckoutInformationPage } from '../pages/checkout-information.page.js';
 import { CheckoutOverviewPage } from '../pages/checkout-overview.page.js';
 import { type InventoryPage } from '../pages/inventory.page.js';
+import { submitBuyer } from '../steps/checkout.steps.js';
 import { sum, taxOn, toCents } from '../support/money.js';
 
 /** Agrega los productos y llega al paso 1 del checkout. */
@@ -21,24 +22,6 @@ async function startCheckout(
   const information = new CheckoutInformationPage(inventory.page);
   await expect(information.title).toHaveText('Checkout: Your Information');
   return information;
-}
-
-/**
- * Completa los datos y continúa. El formulario se vuelve a dibujar justo después de aparecer y
- * puede borrar lo escrito en ese instante (pasa bajo carga, sobre todo en WebKit): se reintenta
- * el llenado hasta que los valores quedan puestos, sin esperas fijas (design.md).
- */
-async function submitBuyer(
-  information: CheckoutInformationPage,
-  data: Partial<Buyer>,
-): Promise<void> {
-  await expect(async () => {
-    await information.fill(data);
-    await expect(information.firstName).toHaveValue(data.firstName ?? '', { timeout: 500 });
-    await expect(information.lastName).toHaveValue(data.lastName ?? '', { timeout: 500 });
-    await expect(information.postalCode).toHaveValue(data.postalCode ?? '', { timeout: 500 });
-  }).toPass();
-  await information.continueButton.click();
 }
 
 test.describe('Compra', () => {

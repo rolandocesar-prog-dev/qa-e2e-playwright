@@ -21,7 +21,7 @@ Marca `[x]` al terminar y haz un commit por tarea. Actualiza el estado del caso 
 ## M2 · Cobertura funcional (prioridad M)
 
 - [x] INV-02 a INV-04, CART-03, CHK-04.
-- [ ] SPEC-01 y SPEC-02, con sus defectos documentados en `docs/defectos/`.
+- [x] SPEC-01 y SPEC-02, con sus defectos documentados en `docs/defectos/` (13).
 - [x] Plantilla de reporte de defectos.
 
 ## M3 · Calidad no funcional

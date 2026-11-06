@@ -16,6 +16,13 @@ export default tseslint.config(
     ...playwright.configs['flat/recommended'],
   },
   {
+    files: ['tests/**/*.ts'],
+    rules: {
+      // expectSoon es expect con un tiempo de espera menor (tests/e2e/special-users.spec.ts).
+      'playwright/expect-expect': ['warn', { assertFunctionNames: ['expectSoon'] }],
+    },
+  },
+  {
     files: ['eslint.config.mjs'],
     ...tseslint.configs.disableTypeChecked,
   },

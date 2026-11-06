@@ -10,6 +10,7 @@ tests/
 ├── pages/          # Page Object Model: una clase por página, sin aserciones
 ├── fixtures/       # fixtures de Playwright (p. ej. sesión ya iniciada)
 ├── setup/          # proyecto «setup»: inicia sesión una vez y guarda el estado
+├── steps/          # pasos reutilizables con aserciones (p. ej. llenar el checkout)
 ├── support/        # utilidades sin Playwright (p. ej. montos en centavos)
 └── data/           # datos de prueba (usuarios de demostración, productos, compradores)
 ```
@@ -43,7 +44,7 @@ tests/
   existe ahí: si no, el nombre puede leerse todavía del catálogo (6 coincidencias).
 - El formulario del comprador se vuelve a dibujar justo después de aparecer y puede borrar lo
   escrito en ese instante. Pasa bajo carga (se vio en WebKit, con 6 procesos en paralelo: «First
-  Name» quedaba vacío). `submitBuyer` reintenta el llenado con `toPass` hasta que los tres campos
+  Name» quedaba vacío). `fillBuyer` (`tests/steps/checkout.steps.ts`) reintenta el llenado con `toPass` hasta que los tres campos
   tienen su valor (`toHaveValue`), sin esperas fijas. Con eso, CHK-01 a CHK-03 pasaron 75 de 75
   veces en WebKit.
 
@@ -74,6 +75,18 @@ tests/
 Cada defecto se documenta en `docs/defectos/DEF-XXX.md` con: título, entorno, pasos para
 reproducirlo, resultado esperado, resultado obtenido, severidad, prioridad y evidencia (captura o
 _trace_).
+
+- Plantilla y escalas de severidad y prioridad: `docs/defectos/PLANTILLA.md`; índice:
+  `docs/defectos/README.md`.
+- **Defectos conocidos en la suite**: la prueba verifica el comportamiento **correcto** y llama a
+  `knownDefect('DEF-XXX')` (`test.fail()`) **justo antes** de la aserción que falla. Así pasa
+  mientras el defecto exista, avisa cuando se corrige («Expected to fail, but passed») y un fallo
+  en los pasos previos (login, llegar al checkout) sigue siendo un fallo real, no un falso
+  «esperado».
+- **Control**: las mismas pruebas con `standard_user` dan «Expected to fail, but passed» en los
+  13 casos; eso prueba que lo que falla es el sitio y no la prueba.
+- Esas pruebas guardan captura y _trace_ siempre (`test.use`), porque una falla esperada cuenta
+  como «pasó» y la configuración general («solo si falla») no guardaría evidencia.
 
 ## 8. Limitación conocida del entorno local
 
