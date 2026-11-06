@@ -26,7 +26,7 @@ Marca `[x]` al terminar y haz un commit por tarea. Actualiza el estado del caso 
 
 ## M3 · Calidad no funcional
 
-- [ ] A11Y-01 con `@axe-core/playwright`.
+- [x] A11Y-01 con `@axe-core/playwright`.
 - [ ] PERF-01 y VIS-01.
 - [ ] Medir la tasa de pruebas inestables en 30 ejecuciones.
 

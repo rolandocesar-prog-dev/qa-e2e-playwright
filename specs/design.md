@@ -56,13 +56,21 @@ tests/
   al centavo (la tasa que aplica el sitio: $39,98 → $3,20); total = subtotal + impuesto. Si el
   sitio cambia la tasa, CHK-03 falla a propósito y la tasa se actualiza en un solo lugar.
 
-## 5. Configuración
+## 5. Accesibilidad (A11Y-01)
+
+- `@axe-core/playwright` analiza el login y el catálogo con las reglas de WCAG 2.1 A y AA
+  (`tests/steps/accessibility.steps.ts`). Fallan las violaciones **críticas o graves**; las
+  moderadas y menores no, pero todas quedan adjuntas al reporte (`axe-*.json`).
+- Medición inicial (2026-11-06): ninguna violación de A/AA en las dos páginas. Control: al
+  inyectar una imagen sin `alt` y un campo sin etiqueta, axe marca las dos como críticas.
+
+## 6. Configuración
 
 - `baseURL` configurable con la variable `BASE_URL`.
 - En CI: 2 reintentos, `forbidOnly`, reporte `github` + HTML.
 - Evidencias: _trace_ en el primer reintento, captura y video solo cuando falla.
 
-## 6. Herramientas complementarias
+## 7. Herramientas complementarias
 
 | Necesidad        | Herramienta                      |
 | ---------------- | -------------------------------- |
@@ -70,7 +78,7 @@ tests/
 | Regresión visual | `toHaveScreenshot` de Playwright |
 | Lint de pruebas  | `eslint-plugin-playwright`       |
 
-## 7. Reporte de defectos
+## 8. Reporte de defectos
 
 Cada defecto se documenta en `docs/defectos/DEF-XXX.md` con: título, entorno, pasos para
 reproducirlo, resultado esperado, resultado obtenido, severidad, prioridad y evidencia (captura o
@@ -88,7 +96,7 @@ _trace_).
 - Esas pruebas guardan captura y _trace_ siempre (`test.use`), porque una falla esperada cuenta
   como «pasó» y la configuración general («solo si falla») no guardaría evidencia.
 
-## 8. Limitación conocida del entorno local
+## 9. Limitación conocida del entorno local
 
 En el equipo de desarrollo (Windows 11 Insider, compilación 26300), el Firefox de Playwright no
 arranca: Windows no resuelve el ensamblado `mozglue` que declara su manifiesto (error
