@@ -69,9 +69,9 @@ Prioridad: **A** = bloqueante para la compra, **M** = importante, **B** = deseab
 | ------- | -------------------------------------------------------------------------- | --------- | ------------ |
 | SPEC-01 | `problem_user`: detectar y reportar los defectos visibles                  | M         | Automatizado |
 | SPEC-02 | `error_user`: detectar fallos en la compra                                 | M         | Automatizado |
-| PERF-01 | `performance_glitch_user`: el login termina en menos de 10 s               | B         | Pendiente    |
+| PERF-01 | `performance_glitch_user`: el login termina en menos de 10 s               | B         | Automatizado |
 | A11Y-01 | Login y catálogo sin violaciones críticas ni graves de WCAG 2.1 A/AA (axe) | M         | Automatizado |
-| VIS-01  | Regresión visual del catálogo                                              | B         | Pendiente    |
+| VIS-01  | Regresión visual del catálogo                                              | B         | Automatizado |
 
 ## 5. Criterios de calidad de la suite
 

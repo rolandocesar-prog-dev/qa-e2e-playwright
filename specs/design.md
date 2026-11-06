@@ -64,13 +64,31 @@ tests/
 - Medición inicial (2026-11-06): ninguna violación de A/AA en las dos páginas. Control: al
   inyectar una imagen sin `alt` y un campo sin etiqueta, axe marca las dos como críticas.
 
-## 6. Configuración
+## 6. Rendimiento y regresión visual (PERF-01, VIS-01)
+
+- **PERF-01**: mide desde el clic en «Login» hasta que el catálogo muestra sus 6 productos, con
+  `performance.now()`, y lo deja como anotación en el reporte. El sitio demora a propósito a
+  `performance_glitch_user` (medido: ≈ 5,1 s, frente a 80 ms de `standard_user`); el límite de
+  10 s deja margen y detectaría una degradación.
+- **VIS-01**: `toHaveScreenshot` del catálogo completo en escritorio (Chromium) y móvil; se tapa
+  el pie con el año, que cambia cada enero. Las referencias viven en
+  `tests/e2e/visual.spec.ts-snapshots/`.
+- **Mismo entorno en local y en el CI**: las capturas dependen del sistema y de sus fuentes, así
+  que el CI corre dentro de la imagen oficial `mcr.microsoft.com/playwright` (versión de
+  `@playwright/test`) y en local se usa la misma con `npm run test:docker`
+  (`scripts/docker-test.mjs` toma la versión instalada). Fuera de Linux, VIS-01 se omite con el
+  motivo a la vista. Para actualizar una referencia: `npm run test:docker -- --update-snapshots
+-g VIS-01`, revisar la imagen y hacer commit.
+- Ventaja adicional: en el contenedor también corre Firefox, que no arranca en el Windows de
+  desarrollo (§10).
+
+## 7. Configuración
 
 - `baseURL` configurable con la variable `BASE_URL`.
 - En CI: 2 reintentos, `forbidOnly`, reporte `github` + HTML.
 - Evidencias: _trace_ en el primer reintento, captura y video solo cuando falla.
 
-## 7. Herramientas complementarias
+## 8. Herramientas complementarias
 
 | Necesidad        | Herramienta                      |
 | ---------------- | -------------------------------- |
@@ -78,7 +96,7 @@ tests/
 | Regresión visual | `toHaveScreenshot` de Playwright |
 | Lint de pruebas  | `eslint-plugin-playwright`       |
 
-## 8. Reporte de defectos
+## 9. Reporte de defectos
 
 Cada defecto se documenta en `docs/defectos/DEF-XXX.md` con: título, entorno, pasos para
 reproducirlo, resultado esperado, resultado obtenido, severidad, prioridad y evidencia (captura o
@@ -96,10 +114,10 @@ _trace_).
 - Esas pruebas guardan captura y _trace_ siempre (`test.use`), porque una falla esperada cuenta
   como «pasó» y la configuración general («solo si falla») no guardaría evidencia.
 
-## 9. Limitación conocida del entorno local
+## 10. Limitación conocida del entorno local
 
 En el equipo de desarrollo (Windows 11 Insider, compilación 26300), el Firefox de Playwright no
 arranca: Windows no resuelve el ensamblado `mozglue` que declara su manifiesto (error
 `spawn UNKNOWN`; el registro de eventos lo informa como error _SideBySide_), aunque
-`mozglue.dll` está en la carpeta. No depende del proyecto. Firefox se prueba en el CI (Ubuntu),
-donde la suite completa pasa en los cuatro navegadores.
+`mozglue.dll` está en la carpeta. No depende del proyecto. Para tener los cuatro navegadores en
+local se usa `npm run test:docker`, el mismo contenedor del CI.

@@ -10,7 +10,7 @@ Marca `[x]` al terminar y haz un commit por tarea. Actualiza el estado del caso 
 - [x] Page Objects de login y catálogo; casos LOGIN-01 a LOGIN-04.
 - [x] CI con ejecución diaria y reporte como artefacto.
 - [x] Plan de pruebas (SDD).
-- [ ] Ejecutar `npx playwright install` y `npm test` en local; confirmar todo en verde.
+- [x] Ejecutar `npx playwright install` y `npm test` en local; confirmar todo en verde (con `npm run test:docker`: Firefox no arranca en el Windows de desarrollo, design.md §10).
 
 ## M1 · Flujos críticos (prioridad A)
 
@@ -27,7 +27,7 @@ Marca `[x]` al terminar y haz un commit por tarea. Actualiza el estado del caso 
 ## M3 · Calidad no funcional
 
 - [x] A11Y-01 con `@axe-core/playwright`.
-- [ ] PERF-01 y VIS-01.
+- [x] PERF-01 y VIS-01 (CI en el contenedor oficial de Playwright; en local, `npm run test:docker`).
 - [ ] Medir la tasa de pruebas inestables en 30 ejecuciones.
 
 ## M4 · Entrega

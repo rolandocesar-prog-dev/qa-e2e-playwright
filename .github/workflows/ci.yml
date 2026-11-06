@@ -15,14 +15,14 @@ jobs:
     name: Playwright
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    # Imagen oficial con los navegadores y las fuentes: las capturas de VIS-01 son idénticas a las
+    # de `npm run test:docker` en local (design.md). Al actualizar @playwright/test hay que
+    # actualizar esta versión; si no coinciden, Playwright no encuentra sus navegadores y falla.
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+      options: --user 1001
     steps:
       - uses: actions/checkout@v7
-
-      - name: Setup Node
-        uses: actions/setup-node@v7
-        with:
-          node-version: 22
-          cache: npm
 
       - name: Install
         run: npm ci
@@ -32,9 +32,6 @@ jobs:
           npm run lint
           npm run format:check
           npm run typecheck
-
-      - name: Navegadores de Playwright
-        run: npx playwright install --with-deps
 
       - name: Pruebas E2E
         run: npm test

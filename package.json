@@ -15,6 +15,7 @@
     "lint": "eslint .",
     "report": "playwright show-report",
     "test": "playwright test",
+    "test:docker": "node scripts/docker-test.mjs",
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
     "typecheck": "tsc --noEmit"

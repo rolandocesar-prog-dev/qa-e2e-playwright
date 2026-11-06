@@ -31,6 +31,14 @@ npm run test:ui     # modo interactivo
 npm run report      # abre el último reporte HTML
 ```
 
+Para el mismo entorno que el CI (imagen oficial de Playwright, necesaria para la regresión visual
+y para correr Firefox donde no arranca de forma nativa), con Docker:
+
+```bash
+npm run test:docker                                  # toda la suite en el contenedor
+npm run test:docker -- --update-snapshots -g VIS-01  # regenerar las capturas de referencia
+```
+
 ## Cómo se desarrolla
 
 El proyecto sigue **Spec Driven Development** aplicado a QA:
