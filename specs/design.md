@@ -39,7 +39,8 @@ tests/
   sin estado, porque verifican justamente el login.
 - El sitio es una SPA: la URL cambia antes de que se dibuje la página nueva. Por eso las pruebas
   esperan con aserciones que reintentan (`toHaveText`, `toHaveURL`…), nunca con lecturas
-  inmediatas.
+  inmediatas. Al abrir el detalle de un producto se espera primero «Back to products», que solo
+  existe ahí: si no, el nombre puede leerse todavía del catálogo (6 coincidencias).
 - El formulario del comprador se vuelve a dibujar justo después de aparecer y puede borrar lo
   escrito en ese instante. Pasa bajo carga (se vio en WebKit, con 6 procesos en paralelo: «First
   Name» quedaba vacío). `submitBuyer` reintenta el llenado con `toPass` hasta que los tres campos

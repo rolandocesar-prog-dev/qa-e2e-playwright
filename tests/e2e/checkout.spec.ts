@@ -98,4 +98,32 @@ test.describe('Compra', () => {
     expect(tax).toBe(taxOn(subtotal));
     expect(total).toBe(subtotal + tax);
   });
+
+  test('CHK-04 · cancelar la compra conserva los productos', async ({
+    loggedInPage: inventory,
+  }) => {
+    const chosen = [products.backpack, products.bikeLight];
+    const information = await startCheckout(inventory, ...chosen);
+    const cart = new CartPage(inventory.page);
+
+    await test.step('en el paso 1 vuelve al carrito', async () => {
+      await information.cancelButton.click();
+
+      await expect(cart.title).toHaveText('Your Cart');
+      await expect(cart.itemNames).toHaveText(chosen);
+    });
+
+    await test.step('en el paso 2 vuelve al catálogo', async () => {
+      await cart.checkout();
+      await submitBuyer(information, buyer);
+      const overview = new CheckoutOverviewPage(inventory.page);
+      await expect(overview.itemNames).toHaveText(chosen);
+
+      await overview.cancelButton.click();
+
+      await expect(inventory.title).toHaveText('Products');
+      await expect(inventory.header.cartBadge).toHaveText(String(chosen.length));
+      await expect(inventory.removeButton(products.backpack)).toBeVisible();
+    });
+  });
 });

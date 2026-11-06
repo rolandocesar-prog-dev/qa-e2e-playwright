@@ -42,9 +42,9 @@ Prioridad: **A** = bloqueante para la compra, **M** = importante, **B** = deseab
 | ID     | Caso                                                | Prioridad | Estado       |
 | ------ | --------------------------------------------------- | --------- | ------------ |
 | INV-01 | Se muestran 6 productos con nombre, precio e imagen | A         | Automatizado |
-| INV-02 | Ordenar por precio ascendente y descendente         | M         | Pendiente    |
-| INV-03 | Ordenar por nombre A-Z y Z-A                        | M         | Pendiente    |
-| INV-04 | El detalle de un producto coincide con su tarjeta   | M         | Pendiente    |
+| INV-02 | Ordenar por precio ascendente y descendente         | M         | Automatizado |
+| INV-03 | Ordenar por nombre A-Z y Z-A                        | M         | Automatizado |
+| INV-04 | El detalle de un producto coincide con su tarjeta   | M         | Automatizado |
 
 ### Carrito (CART)
 
@@ -52,16 +52,16 @@ Prioridad: **A** = bloqueante para la compra, **M** = importante, **B** = deseab
 | ------- | ------------------------------------------------------- | --------- | ------------ |
 | CART-01 | Agregar un producto actualiza el contador del carrito   | A         | Automatizado |
 | CART-02 | Quitar un producto desde el catálogo y desde el carrito | A         | Automatizado |
-| CART-03 | El carrito se conserva al navegar entre páginas         | M         | Pendiente    |
+| CART-03 | El carrito se conserva al navegar entre páginas         | M         | Automatizado |
 
 ### Compra (CHK)
 
-| ID     | Caso                                                        | Prioridad | Estado       |
-| ------ | ----------------------------------------------------------- | --------- | ------------ |
-| CHK-01 | Compra completa de punta a punta                            | A         | Automatizado |
-| CHK-02 | Datos obligatorios del comprador (nombre, apellido, código) | A         | Automatizado |
-| CHK-03 | Subtotal, impuesto y total calculados correctamente         | A         | Automatizado |
-| CHK-04 | Cancelar la compra vuelve al carrito sin perder productos   | M         | Pendiente    |
+| ID     | Caso                                                                            | Prioridad | Estado       |
+| ------ | ------------------------------------------------------------------------------- | --------- | ------------ |
+| CHK-01 | Compra completa de punta a punta                                                | A         | Automatizado |
+| CHK-02 | Datos obligatorios del comprador (nombre, apellido, código)                     | A         | Automatizado |
+| CHK-03 | Subtotal, impuesto y total calculados correctamente                             | A         | Automatizado |
+| CHK-04 | Cancelar la compra conserva los productos (paso 1 → carrito, paso 2 → catálogo) | M         | Automatizado |
 
 ### Usuarios especiales y calidad (SPEC, A11Y, PERF)
 

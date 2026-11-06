@@ -10,6 +10,7 @@ export class CheckoutOverviewPage {
   readonly tax: Locator;
   readonly total: Locator;
   readonly finishButton: Locator;
+  readonly cancelButton: Locator;
 
   constructor(readonly page: Page) {
     this.title = page.getByTestId('title');
@@ -19,6 +20,7 @@ export class CheckoutOverviewPage {
     this.tax = page.getByTestId('tax-label');
     this.total = page.getByTestId('total-label');
     this.finishButton = page.getByTestId('finish');
+    this.cancelButton = page.getByTestId('cancel');
   }
 
   /** Montos del resumen en centavos. Llamar después de esperar a que la página esté dibujada. */
