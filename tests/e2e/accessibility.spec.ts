@@ -3,7 +3,7 @@ import { expect, test } from '../fixtures/index.js';
 import { LoginPage } from '../pages/login.page.js';
 import { blockingA11yViolations } from '../steps/accessibility.steps.js';
 
-test.describe('A11Y-01 · accesibilidad (WCAG 2.1 A/AA con axe)', () => {
+test.describe('Accesibilidad (WCAG 2.1 A/AA con axe)', () => {
   test.describe('sin sesión', () => {
     test.use({ storageState: { cookies: [], origins: [] } });
 

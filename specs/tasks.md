@@ -32,6 +32,6 @@ Marca `[x]` al terminar y haz un commit por tarea. Actualiza el estado del caso 
 
 ## M4 · Entrega
 
-- [ ] Publicar el reporte HTML en GitHub Pages desde el CI.
+- [x] Publicar el reporte HTML en GitHub Pages desde el CI (https://rolandocesar-prog-dev.github.io/qa-e2e-playwright/).
 - [ ] README final con capturas del reporte y métricas de la suite.
 - [ ] Agregar el proyecto, con enlaces, a la sección Proyectos del CV.
