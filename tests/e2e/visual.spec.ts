@@ -27,6 +27,9 @@ test('VIS-01 · el catálogo se ve igual que la referencia', async ({
 
   await expect(inventory.page).toHaveScreenshot('catalogo.png', {
     fullPage: true,
+    // En 30 ejecuciones falló 3 veces por 1 píxel de ~1,4 millones (suavizado de imágenes). Un
+    // cambio real (un precio, un texto) altera cientos o miles: 100 píxeles no lo ocultan.
+    maxDiffPixels: 100,
     // El año del pie cambia cada enero; no es una regresión del catálogo.
     mask: [inventory.page.getByTestId('footer-copy')],
   });

@@ -71,7 +71,8 @@ tests/
   `performance_glitch_user` (medido: ≈ 5,1 s, frente a 80 ms de `standard_user`); el límite de
   10 s deja margen y detectaría una degradación.
 - **VIS-01**: `toHaveScreenshot` del catálogo completo en escritorio (Chromium) y móvil; se tapa
-  el pie con el año, que cambia cada enero. Las referencias viven en
+  el pie con el año, que cambia cada enero. Tolerancia: hasta 100 píxeles distintos (ver
+  «Estabilidad»). Las referencias viven en
   `tests/e2e/visual.spec.ts-snapshots/`.
 - **Mismo entorno en local y en el CI**: las capturas dependen del sistema y de sus fuentes, así
   que el CI corre dentro de la imagen oficial `mcr.microsoft.com/playwright` (versión de
@@ -94,6 +95,10 @@ tests/
   aparte se cuentan las que fallan siempre. Falla si la tasa de inestables llega al 1 % o si hay
   alguna rota, y publica la tabla en el resumen de la ejecución. Las fallas esperadas
   (`test.fail()`) cuentan como resultado correcto.
+- **Primera medición** (2026-11-07, 30 ejecuciones, 4 170 pruebas ejecutadas): 1 prueba
+  inestable de 139 (0,72 %, dentro del límite): VIS-01 en Chromium falló 3 de 30 veces, siempre
+  por **1 píxel** de ~1,4 millones (variación del suavizado de imágenes). Se agregó una tolerancia
+  de 100 píxeles, que no oculta un cambio real del catálogo.
 
 ## 8. Herramientas complementarias
 
