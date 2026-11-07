@@ -99,6 +99,8 @@ tests/
   inestable de 139 (0,72 %, dentro del límite): VIS-01 en Chromium falló 3 de 30 veces, siempre
   por **1 píxel** de ~1,4 millones (variación del suavizado de imágenes). Se agregó una tolerancia
   de 100 píxeles, que no oculta un cambio real del catálogo.
+- **Segunda medición** (2026-11-07, con la tolerancia): 30 ejecuciones, 4 170 pruebas,
+  **0 fallas** y 0 inestables (0,00 %).
 
 ## 8. Herramientas complementarias
 

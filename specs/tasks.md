@@ -28,7 +28,7 @@ Marca `[x]` al terminar y haz un commit por tarea. Actualiza el estado del caso 
 
 - [x] A11Y-01 con `@axe-core/playwright`.
 - [x] PERF-01 y VIS-01 (CI en el contenedor oficial de Playwright; en local, `npm run test:docker`).
-- [x] Medir la tasa de pruebas inestables en 30 ejecuciones (0,72 %: VIS-01 por 1 píxel; tolerancia agregada).
+- [x] Medir la tasa de pruebas inestables en 30 ejecuciones (0,72 %: VIS-01 por 1 píxel; con tolerancia, 0,00 %).
 
 ## M4 · Entrega
 
