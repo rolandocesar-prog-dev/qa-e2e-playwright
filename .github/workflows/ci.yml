@@ -10,6 +10,9 @@ on:
     - cron: '17 11 * * *'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   e2e:
     name: Playwright
@@ -43,3 +46,29 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 14
+
+      # El reporte se publica también cuando hay fallas: es cuando más sirve. No en pull requests.
+      - name: Reporte para GitHub Pages
+        if: ${{ !cancelled() && github.event_name != 'pull_request' }}
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: playwright-report/
+
+  publish:
+    name: Publicar el reporte
+    needs: e2e
+    if: ${{ !cancelled() && github.event_name != 'pull_request' && needs.e2e.result != 'skipped' }}
+    runs-on: ubuntu-latest
+    # Una sola publicación del reporte a la vez; no se cancela una que ya empezó.
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

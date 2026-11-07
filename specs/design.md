@@ -87,6 +87,10 @@ tests/
 
 - `baseURL` configurable con la variable `BASE_URL`.
 - En CI: 2 reintentos, `forbidOnly`, reporte `github` + HTML.
+- **Reporte publicado**: el trabajo `publish` del CI despliega el reporte HTML en GitHub Pages
+  (https://rolandocesar-prog-dev.github.io/qa-e2e-playwright/) en cada push a `main`, en la
+  ejecución diaria y a mano; también cuando hay fallas, que es cuando más sirve. En los pull
+  requests solo queda como artefacto.
 - Evidencias: _trace_ en el primer reintento, captura y video solo cuando falla.
 - **Estabilidad** (workflow manual `Estabilidad`): ejecuta la suite completa N veces (30 por
   defecto) en paralelo, **sin reintentos** y en el mismo contenedor que el CI, y guarda un reporte
