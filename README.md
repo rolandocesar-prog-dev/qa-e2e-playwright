@@ -2,6 +2,14 @@
 
 [![E2E](https://github.com/rolandocesar-prog-dev/qa-e2e-playwright/actions/workflows/ci.yml/badge.svg)](https://github.com/rolandocesar-prog-dev/qa-e2e-playwright/actions/workflows/ci.yml)
 
+> **In English.** End-to-end test suite for [Sauce Demo](https://www.saucedemo.com), a public site for practicing
+> test automation, built from a prioritized test plan. Playwright and TypeScript with the Page
+> Object Model: 139 tests on four browsers, 13 real defects documented, accessibility (axe),
+> visual regression and 0 flaky tests in 30 CI runs.
+> **[Latest test report](https://rolandocesar-prog-dev.github.io/qa-e2e-playwright/)**.
+>
+> The test plan, the defect reports and the documentation are in Spanish.
+
 Suite de pruebas end-to-end sobre [Sauce Demo](https://www.saucedemo.com), un sitio público creado
 para practicar automatización. Parte de un **plan de pruebas** con casos priorizados y trazables, y
 se ejecuta en cuatro navegadores en cada cambio y una vez al día.
